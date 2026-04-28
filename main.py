@@ -8,4 +8,12 @@ app = FastAPI(
 
 @app.get("/")
 async def root() :
-    """"Emd"""
+    """Endpoind raiz que retorna saludo."""
+    return {"mensaje":"hola fastAPI"}
+
+@app.get("/saludar/{nombre}")
+def saludar(nombre: str):
+    """ Endpoint que saluda a la persona cuyo nombre se porporciona en la ruta"""
+    if nombre in "jennifer":
+        return{"mensage": f"hola,{nombre}"}
+    
