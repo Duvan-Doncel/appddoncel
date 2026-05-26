@@ -1,19 +1,18 @@
 from fastapi import FastAPI
+from api.v1.api import api_router
 
 app = FastAPI(
     title="Mi Primera API",
-    description="API de ejemplo para",
+    description="API de ejemplo para tienda",
     version="1.0.0"
 )
 
 @app.get("/")
-async def root() :
-    """Endpoind raiz que retorna saludo."""
-    return {"mensaje":"hola fastAPI"}
+async def root():
+    return {"mensaje": "Bienvenido a mi API"}
 
-@app.get("/saludar/{nombre}")
-def saludar(nombre: str):
-    """ Endpoint que saluda a la persona cuyo nombre se porporciona en la ruta"""
-    if nombre in "jennifer":
-        return{"mensage": f"hola,{nombre}"}
-    
+# Conectar rutas
+app.include_router(
+    api_router,
+    prefix="/api/v1"
+)
